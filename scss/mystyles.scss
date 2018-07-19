@@ -1,0 +1,20 @@
+$success:blue;
+$text-muted: green;
+$card-spacer-y: 0.8rem;
+
+
+
+@import '../node_modules/bootstrap/scss/bootstrap';
+.setTbLayout{
+    width: 15%;
+    background-color: yellow;
+}
+.hideIt{
+    visibility: hidden;
+}
+.footerAlignment{
+// margin-bottom: 10%;
+margin-top: 20%;
+margin-right: 5%;
+}
+

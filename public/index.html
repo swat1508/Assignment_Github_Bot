@@ -1,25 +1,324 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="./public/request.js" type="text/javascript"></script> 
-    <script src="./../src/requestHandler.js" type="text/javascript"></script> 
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  -->
+  <!--Custom CSS  and Google-Font-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+  <link rel="stylesheet" href="css/mystyles.css">
+  <link rel="shortcut icon" type="image/png" href="images/icon.jpg"/>
 
-    <title>Document</title>     
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <title>GIT Operations</title>
 </head>
-<body>
-    <input type="text" style="width:80%;" id="userTextBox"/>
-    <input type="submit" id="submitButton" value="Submit"/>
-    <br/><br/>
 
-    <div id="myWidget" style="width:70%;">
+<body>
+  <!-- Logo and Navigation Starts  -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img class="imgCls" src="images/myLogo.jpg" alt="Logo" />
+
+    </a>
+    <!--
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Gallery</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            Packages
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Low Budget</a>
+            <a class="dropdown-item" href="#">Medium Budget</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">High Budget</a>
+          </div>
+        </li>
+   
+      </ul>
+
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>  -->
+
+
+  </nav>
+  <!-- Logo and Navigation  Ends -->
+  
+
+
+  <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text" id="btnGroupAddon">Type Command ==> </div>
+        </div>
+        <input type="text" id="userTextBox" class="form-control setTbLayout" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon">      
+      </div>
 
     </div>
+<br/>
+<!--Modal Starts --> 
+<!--
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">create-repo</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">create-issue</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">close-issue</button>
 
-    <!-- <input type="text" style="width:80%;" id="showWidget"/> -->
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<button type="button" id="showModal" class="btn btn-primary" data-toggle="modal" data-target="#create-repo" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+-->
+<button type="button" id="showModal" class="btn btn-primary hideIt" data-toggle="modal" data-target="#anything" data-whatever="@getbootstrap">Custom Button</button>
+<!-- Modal for create-repo-->
+<div class="modal fade" id="create-repo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create Repo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Repository Name:</label>
+            <input type="text" class="form-control" id="create-repo-repoName" value="">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Description:</label>
+            <textarea class="form-control" id="create-repo-repoDesc" value=""></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="createRepoClose">Close</button>
+        <button type="button" class="btn btn-primary" id="createRepoOk">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for create-issue-->
+<div class="modal fade" id="create-issue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Create New Issue</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                    <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Repo Name :</label>
+                            <input type="text" class="form-control" id="create-issue-repoName">
+                          </div>
+
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Title :</label>
+                  <input type="text" class="form-control" id="create-issue-issueTitle">
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">Body:</label>
+                  <textarea class="form-control" id="create-issue-issueDesc"></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="createIssueClose">Close</button>
+              <button type="button" class="btn btn-primary" id="createIssueOk">Ok</button>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- Modal for close-issue-->
+      <div class="modal fade" id="close-issue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Close Issue</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">Repo Name:</label>
+                      <input type="text" class="form-control" id="close-issue-repoName">
+                    </div>
+                    <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Issue Number:</label>
+                            <input type="text" class="form-control" id="close-issue-target">
+                          </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeIssueClose">Close</button>
+                  <button type="button" class="btn btn-primary" id="closeIssueOk">Ok</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+<!-- Modal for add-comment-->
+          <div class="modal fade" id="add-comment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Addd Comment Issue</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          <label for="recipient-name" class="col-form-label">Repo Name:</label>
+                          <input type="text" class="form-control" id="add-comment-repoName">
+                        </div>
+                        <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Issue Number:</label>
+                                <input type="text" class="form-control" id="add-comment-issueNumber">
+                              </div>
+                              <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Comment Body:</label>
+                                    <textarea class="form-control" id="add-comment-commentBody"></textarea>
+                                  </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" id="addCommentClose">Close</button>
+                      <button type="button" class="btn btn-primary" id="addCommentOk">Ok</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal for add-collaborator-->
+          <div class="modal fade" id="add-collaborator" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Add Collaborator</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          <label for="recipient-name" class="col-form-label">Repo Name:</label>
+                          <!-- Try
+                          <input type="text" class="form-control" id="addCollaboratorRepoName">
+                          -->
+                          <input type="text" class="form-control" id="add-collaborator-repoName">
+                        </div>
+                        <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Collaborator Id:</label>
+                                <input type="text" class="form-control" id="add-collaborator-target">
+                              </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" id="addCollaboratorClose">Close</button>
+                      <button type="button" class="btn btn-primary" id="addCollaboratorOk">Ok</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+<!--Modal Ends --> 
+ 
+    <div class="input-group myResultClass">   
+            <div class="input-group-prepend">
+              <span class="input-group-text">Result ==></span>
+            </div>
+
+            <div id="myWidget" class="form-control" aria-label="With textarea">
+               
+            </div>
+          </div>
+
+
+<hr>
+  <!-- footer starts-->
+  <footer id="footer-main" class="footerAlignment">
+    <div class="conatiner">
+      <div class="row">
+        <div class="col-sm-3">
+          <p> All Rights Reserved </p>
+          <p> coded by
+            <a href="#">Swatantra Sinha</a>
+          </p>
+        </div>
+        <div class="col-sm-3">
+          <ul class="list-unstyled">
+            <li>
+              <a href="#"> Home </a>
+            </li>
+            <li>
+              <a href="#"> Our Head Offices </a>
+            </li>
+            <li>
+              <a href="#"> About </a>
+            </li>
+            <li>
+              <a href="#"> Latest </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <ul class="list-unstyled">
+            <li>
+              <a href="#"> Facebook </a>
+            </li>
+            <li>
+              <a href="#"> Twitter </a>
+            </li>
+            <li>
+              <a href="#"> Youtube </a>
+            </li>
+            <li>
+              <a href="#"> LinkedIn </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <h6> Important Alert </h6>
+          <p>
+            In case of any unwanted content in the website, kindly email us at - bharatdekho@hotmail.com
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+  
+  <!--footer ends -->
+
 </body>
+
 </html>
