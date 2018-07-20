@@ -6,7 +6,7 @@ module.exports = class GitOperations {
 
  processFetchApiWithPost(objData){
     debugger;
-     var authorizationToken  =  'token a6d7aa4fc5abf1e87224ab0d945087ae93769485';
+     var authorizationToken  =  'token 9743e8c3db3090a903c990fdc97de9154e2fdb77';
   
     var statusCode;
     var myArray =  [];
@@ -42,7 +42,7 @@ module.exports = class GitOperations {
 
  processFetchApiWithGet(objData){
     debugger;
-     var authorizationToken  =  'token a6d7aa4fc5abf1e87224ab0d945087ae93769485';
+     var authorizationToken  =  'token 9743e8c3db3090a903c990fdc97de9154e2fdb77';
   
     var statusCode;
     var myArray =  [];
